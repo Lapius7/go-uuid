@@ -1,0 +1,28 @@
+{
+  "name": "@lapius/go-uuid",
+  "version": "0.0.0",
+  "description": "アクセス時に UUID を生成して返すシンプルな HTTP サーバー",
+  "keywords": ["uuid", "server", "http"],
+  "homepage": "https://github.com/Lapius7/go-uuid",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lapius7/go-uuid.git"
+  },
+  "license": "MIT",
+  "bin": {
+    "go-uuid": "bin/go-uuid"
+  },
+  "files": [
+    "bin/go-uuid"
+  ],
+  "os": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "optionalDependencies": {}
+}
