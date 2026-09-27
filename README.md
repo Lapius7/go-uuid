@@ -4,6 +4,15 @@
 
 ## 使い方
 
+npm から入れる場合(Go 不要):
+
+```bash
+npm i -g @lapius/go-uuid
+go-uuid
+```
+
+ソースから動かす場合:
+
 ```bash
 go run main.go
 ```
