@@ -2,25 +2,45 @@
 
 アクセス時にUUIDを生成して返すシンプルなHTTPサーバー。RFC 9562のUUIDバージョンをURLパスで指定できる。
 
-## 使い方
+## すぐ試す
 
-npm から入れる場合(Go 不要):
+公開中のサーバーに `curl` するだけで UUID が返る（インストール不要）。
+
+```bash
+curl https://sandbox.lapius7.com/go-uuid/v4
+```
+
+## インストール
+
+### npm（推奨）
 
 ```bash
 npm i -g @lapius/go-uuid
-go-uuid
 ```
 
-ソースから動かす場合:
+Linux / macOS（x64・arm64）/ Windows（x64）のビルド済みバイナリが入る（Go 不要、Node.js 18 以降）。更新も同じコマンドで行う。
+
+### ソースから
 
 ```bash
+git clone https://github.com/Lapius7/go-uuid.git && cd go-uuid
 go run main.go
 ```
 
-ポート7100で起動する。
+## 使い方
+
+`go-uuid` を実行するとポート 7100 で HTTP サーバーが起動する。
 
 ```bash
-curl http://localhost:7100/v4
+go-uuid
+```
+
+別のターミナルから、パスで UUID のバージョンを指定して取得する。
+
+```bash
+curl http://localhost:7100/       # v7
+curl http://localhost:7100/v4     # v4（ランダム）
+curl "http://localhost:7100/v5?name=lapius7.com"
 ```
 
 ## エンドポイント
