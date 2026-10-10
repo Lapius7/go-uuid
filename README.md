@@ -15,7 +15,7 @@ curl https://sandbox.lapius7.com/go-uuid/v4
 ### npm（推奨）
 
 ```bash
-npm i -g @lapius/go-uuid
+pnpm add -g @lapius/go-uuid
 ```
 
 Linux / macOS（x64・arm64）/ Windows（x64）のビルド済みバイナリが入る（Go 不要、Node.js 18 以降）。更新も同じコマンドで行う。
