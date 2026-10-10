@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -18,11 +19,16 @@ var defaultNameSpace = uuid.NameSpaceDNS
 type UUIDHandlerFunc func(req *http.Request) (uuid.UUID, error)
 
 func (generator UUIDHandlerFunc) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	log.Printf("access: method=%s path=%s query=%s remote=%s ua=%q", req.Method, req.URL.Path, req.URL.RawQuery, req.RemoteAddr, req.UserAgent())
+
 	id, err := generator(req)
 	if err != nil {
+		log.Printf("error: path=%s remote=%s err=%v", req.URL.Path, req.RemoteAddr, err)
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+	log.Printf("generated: path=%s remote=%s uuid=%s", req.URL.Path, req.RemoteAddr, id)
+
 	b, _ := id.MarshalText()
 	w.Header().Set("Content-Length", strconv.Itoa(len(b)))
 	w.Header().Set("Content-Type", "text/plain")
@@ -100,6 +106,6 @@ func NewHandler() http.Handler {
 }
 
 func main() {
-	fmt.Println("listening on :7100")
-	http.ListenAndServe(":7100", NewHandler())
+	log.Println("listening on :7100")
+	log.Fatal(http.ListenAndServe(":7100", NewHandler()))
 }
